@@ -1,4 +1,4 @@
-module github.com/dtaniwaki/cluster-lending-manager
+module github.com/ubie-oss/cluster-lending-manager
 
 go 1.17
 

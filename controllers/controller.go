@@ -27,7 +27,7 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/log"
 	"sigs.k8s.io/controller-runtime/pkg/reconcile"
 
-	clusterlendingmanagerv1alpha1 "github.com/dtaniwaki/cluster-lending-manager/api/v1alpha1"
+	clusterlendingmanagerv1alpha1 "github.com/ubie-oss/cluster-lending-manager/api/v1alpha1"
 )
 
 // LendingConfigReconciler reconciles a LendingConfig object
@@ -37,11 +37,11 @@ type LendingConfigReconciler struct {
 	Cron     *Cron
 }
 
-const finalizerName = "clusterlendingmanager.dtaniwaki.github.com/finalizer"
+const finalizerName = "clusterlendingmanager.ubie-oss.github.com/finalizer"
 
-//+kubebuilder:rbac:groups=clusterlendingmanager.dtaniwaki.github.com,resources=lendingconfigs,verbs=get;list;watch;create;update;patch;delete
-//+kubebuilder:rbac:groups=clusterlendingmanager.dtaniwaki.github.com,resources=lendingconfigs/status,verbs=get;update;patch
-//+kubebuilder:rbac:groups=clusterlendingmanager.dtaniwaki.github.com,resources=lendingconfigs/finalizers,verbs=update
+//+kubebuilder:rbac:groups=clusterlendingmanager.ubie-oss.github.com,resources=lendingconfigs,verbs=get;list;watch;create;update;patch;delete
+//+kubebuilder:rbac:groups=clusterlendingmanager.ubie-oss.github.com,resources=lendingconfigs/status,verbs=get;update;patch
+//+kubebuilder:rbac:groups=clusterlendingmanager.ubie-oss.github.com,resources=lendingconfigs/finalizers,verbs=update
 //+kubebuilder:rbac:groups=apps,resources=deployments,verbs=get;list;update;patch
 //+kubebuilder:rbac:groups="",resources=events,verbs=create;patch
 

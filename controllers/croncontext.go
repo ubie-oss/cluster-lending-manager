@@ -21,7 +21,7 @@ import (
 	"fmt"
 	"sync"
 
-	"github.com/dtaniwaki/cluster-lending-manager/api/v1alpha1"
+	"github.com/ubie-oss/cluster-lending-manager/api/v1alpha1"
 	"github.com/pkg/errors"
 	corev1 "k8s.io/api/core/v1"
 	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"

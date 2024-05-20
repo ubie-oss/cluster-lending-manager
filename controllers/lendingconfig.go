@@ -23,8 +23,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/dtaniwaki/cluster-lending-manager/api/v1alpha1"
-	clusterlendingmanagerv1alpha1 "github.com/dtaniwaki/cluster-lending-manager/api/v1alpha1"
+	"github.com/ubie-oss/cluster-lending-manager/api/v1alpha1"
+	clusterlendingmanagerv1alpha1 "github.com/ubie-oss/cluster-lending-manager/api/v1alpha1"
 	"github.com/pkg/errors"
 	"sigs.k8s.io/controller-runtime/pkg/client"
 	"sigs.k8s.io/controller-runtime/pkg/log"
@@ -42,8 +42,8 @@ var hoursPattern = regexp.MustCompile(`(\d{2}):(\d{2}) *(am|pm)?`)
 
 type LendingConfigEvent = string
 
-const annotationNameSkip = "clusterlendingmanager.dtaniwaki.github.com/skip"
-const annotationNameDefaultReplicas = "clusterlendingmanager.dtaniwaki.github.com/default-replicas"
+const annotationNameSkip = "clusterlendingmanager.ubie-oss.github.com/skip"
+const annotationNameDefaultReplicas = "clusterlendingmanager.ubie-oss.github.com/default-replicas"
 
 const (
 	SchedulesUpdated LendingConfigEvent = "SchedulesUpdated"

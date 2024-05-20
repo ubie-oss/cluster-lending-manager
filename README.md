@@ -1,5 +1,7 @@
 # ClusterLendingManager
 
+CronHPA was created by [dtaniwaki](https://github.com/dtaniwaki/cluster-lending-manager). We forked because the original version is no longer being actively maintained.
+
 [![Go Reference][godoc-image]][godoc-link]
 [![Coverage Status][cov-image]][cov-link]
 
@@ -8,7 +10,7 @@ ClusterLendingManager is an operator to manage muti-tenant cluster's resources.
 Here's a `LendingConfig` example.
 
 ```yaml
-apiVersion: clusterlendingmanager.dtaniwaki.github.com/v1alpha1
+apiVersion: clusterlendingmanager.ubie-oss.github.com/v1alpha1
 kind: LendingConfig
 metadata:
   name: lending-config-sample
@@ -92,8 +94,8 @@ You will see sample Deployment and deployment in the current context, maybe `def
 Copyright (c) 2021 Daisuke Taniwaki. See [LICENSE](LICENSE) for details.
 
 
-[godoc-image]: https://pkg.go.dev/badge/github.com/dtaniwaki/cluster-lending-manager.svg
-[godoc-link]: https://pkg.go.dev/github.com/dtaniwaki/cluster-lending-manager
-[cov-image]:   https://coveralls.io/repos/github/dtaniwaki/cluster-lending-manager/badge.svg?branch=main
-[cov-link]:    https://coveralls.io/github/dtaniwaki/cluster-lending-manager?branch=main
+[godoc-image]: https://pkg.go.dev/badge/github.com/ubie-oss/cluster-lending-manager.svg
+[godoc-link]: https://pkg.go.dev/github.com/ubie-oss/cluster-lending-manager
+[cov-image]:   https://coveralls.io/repos/github/ubie-oss/cluster-lending-manager/badge.svg?branch=main
+[cov-link]:    https://coveralls.io/github/ubie-oss/cluster-lending-manager?branch=main
 

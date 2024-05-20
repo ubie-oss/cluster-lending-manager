@@ -1,4 +1,4 @@
-apiVersion: clusterlendingmanager.dtaniwaki.github.com/v1alpha1
+apiVersion: clusterlendingmanager.ubie-oss.github.com/v1alpha1
 kind: LendingConfig
 metadata:
   name: lending-config-sample
