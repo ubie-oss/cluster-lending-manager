@@ -8,16 +8,13 @@ jobs:
     name: Push Docker image to GitHub Docker Registry
     runs-on: ubuntu-latest
     steps:
-    - name: Check out the repo
-      uses: actions/checkout@v4
-    - name: Log in to GitHub Docker Registry
-      uses: docker/login-action@v3
+    - uses: actions/checkout@v4
+    - uses: docker/login-action@v3
       with:
         registry: docker.pkg.github.com
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
-    - name: Build container image
-      uses: docker/build-push-action@v5
+    - uses: docker/build-push-action@v5
       with:
         push: true
         tags: docker.pkg.github.com/ubie-oss/cluster-lending-manager/controller:latest
