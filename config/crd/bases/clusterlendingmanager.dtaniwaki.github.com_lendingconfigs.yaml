@@ -5,9 +5,9 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.8.0
   creationTimestamp: null
-  name: lendingconfigs.clusterlendingmanager.dtaniwaki.github.com
+  name: lendingconfigs.clusterlendingmanager.ubie-oss.github.com
 spec:
-  group: clusterlendingmanager.dtaniwaki.github.com
+  group: clusterlendingmanager.ubie-oss.github.com
   names:
     kind: LendingConfig
     listKind: LendingConfigList

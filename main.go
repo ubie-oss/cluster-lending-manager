@@ -31,8 +31,8 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/healthz"
 	"sigs.k8s.io/controller-runtime/pkg/log/zap"
 
-	clusterlendingmanagerv1alpha1 "github.com/dtaniwaki/cluster-lending-manager/api/v1alpha1"
-	"github.com/dtaniwaki/cluster-lending-manager/controllers"
+	clusterlendingmanagerv1alpha1 "github.com/ubie-oss/cluster-lending-manager/api/v1alpha1"
+	"github.com/ubie-oss/cluster-lending-manager/controllers"
 	//+kubebuilder:scaffold:imports
 )
 
@@ -71,7 +71,7 @@ func main() {
 		Port:                   9443,
 		HealthProbeBindAddress: probeAddr,
 		LeaderElection:         enableLeaderElection,
-		LeaderElectionID:       "49a7d8f8.dtaniwaki.github.com",
+		LeaderElectionID:       "49a7d8f8.ubie-oss.github.com",
 	})
 	if err != nil {
 		setupLog.Error(err, "unable to start manager")

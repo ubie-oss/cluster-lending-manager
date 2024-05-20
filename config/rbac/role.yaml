@@ -22,7 +22,7 @@ rules:
   - patch
   - update
 - apiGroups:
-  - clusterlendingmanager.dtaniwaki.github.com
+  - clusterlendingmanager.ubie-oss.github.com
   resources:
   - lendingconfigs
   verbs:
@@ -34,13 +34,13 @@ rules:
   - update
   - watch
 - apiGroups:
-  - clusterlendingmanager.dtaniwaki.github.com
+  - clusterlendingmanager.ubie-oss.github.com
   resources:
   - lendingconfigs/finalizers
   verbs:
   - update
 - apiGroups:
-  - clusterlendingmanager.dtaniwaki.github.com
+  - clusterlendingmanager.ubie-oss.github.com
   resources:
   - lendingconfigs/status
   verbs:
