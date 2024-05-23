@@ -21,8 +21,8 @@ import (
 	"fmt"
 	"sync"
 
-	"github.com/ubie-oss/cluster-lending-manager/api/v1alpha1"
 	"github.com/pkg/errors"
+	"github.com/ubie-oss/cluster-lending-manager/api/v1alpha1"
 	corev1 "k8s.io/api/core/v1"
 	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
 	"k8s.io/apimachinery/pkg/runtime/schema"
@@ -125,9 +125,6 @@ func (cronctx *CronContext) endLending(ctx context.Context) error {
 	}
 
 	lendingConfig.Status.LendingReferences = lendingReferences
-	if err != nil {
-		return err
-	}
 
 	err = cronctx.reconciler.Status().Update(ctx, lendingConfig.ToCompatible(), &client.UpdateOptions{})
 	if err != nil {

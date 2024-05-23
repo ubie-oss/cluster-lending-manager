@@ -1,6 +1,6 @@
 # ClusterLendingManager
 
-CronHPA was created by [dtaniwaki](https://github.com/dtaniwaki/cluster-lending-manager). We forked because the original version is no longer being actively maintained.
+ClusterLendingManager was created by [dtaniwaki](https://github.com/dtaniwaki/cluster-lending-manager). We forked because the original version is no longer being actively maintained.
 
 [![Go Reference][godoc-image]][godoc-link]
 [![Coverage Status][cov-image]][cov-link]

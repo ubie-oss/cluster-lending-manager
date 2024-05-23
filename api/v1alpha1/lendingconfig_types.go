@@ -20,100 +20,101 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
-// Schedule is ...
+// Schedule represents a time schedule with a start and end time.
 type Schedule struct {
-	// Start is ...
+	// Start is the start time of the schedule.
 	Start *string `json:"start,omitempty"`
-	// End is ...
+	// End is the end time of the schedule.
 	End *string `json:"end,omitempty"`
 }
 
-// DaySchedule is ...
+// DaySchedule represents a schedule for a specific day, consisting of multiple time schedules.
 type DaySchedule struct {
-	// Hours is ...
+	// Hours is a list of time schedules for the day.
 	Hours []Schedule `json:"hours,omitempty"`
 }
 
-// Schedule is ...
+// ScheduleSpec represents the schedule specification for a lending configuration.
 type ScheduleSpec struct {
-	// Default is ...
+	// Default is the default schedule for all days.
 	Default *DaySchedule `json:"default,omitempty"`
-	// Monday is ...
+	// Monday is the schedule for Monday.
 	Monday *DaySchedule `json:"monday,omitempty"`
-	// Tuesday is ...
+	// Tuesday is the schedule for Tuesday.
 	Tuesday *DaySchedule `json:"tuesday,omitempty"`
-	// Wednesday is ...
+	// Wednesday is the schedule for Wednesday.
 	Wednesday *DaySchedule `json:"wednesday,omitempty"`
-	// Thursday is ...
+	// Thursday is the schedule for Thursday.
 	Thursday *DaySchedule `json:"thursday,omitempty"`
-	// Friday is ...
+	// Friday is the schedule for Friday.
 	Friday *DaySchedule `json:"friday,omitempty"`
-	// Saturday is ...
+	// Saturday is the schedule for Saturday.
 	Saturday *DaySchedule `json:"saturday,omitempty"`
-	// Sunday is ...
+	// Sunday is the schedule for Sunday.
 	Sunday *DaySchedule `json:"sunday,omitempty"`
-	// TODO: Support holidays.
-
-	// Always is ...
+	// Always indicates if the schedule is always active.
 	Always bool `json:"always,omitempty"`
+
+	// TODO: Support holidays.
 }
 
-// Target is ...
+// Target represents a target object for the lending configuration.
 type Target struct {
-	// APIVersion is ...
+	// APIVersion is the API version of the target object.
 	APIVersion string `json:"apiVersion,omitempty"`
-	// Kind is ...
+	// Kind is the kind of the target object.
 	Kind string `json:"kind,omitempty"`
-	// Name is ...
+	// Name is the name of the target object.
 	Name *string `json:"name,omitempty"`
-	// DefaultReplicas
+	// DefaultReplicas is the default number of replicas for the target object.
 	DefaultReplicas *int64 `json:"defaultReplicas,omitempty"`
 }
 
-// LendingConfigSpec defines the desired state of LendingConfig
+// LendingConfigSpec defines the desired state of a LendingConfig.
 type LendingConfigSpec struct {
-	// Timezone is ...
+	// Timezone is the timezone for the lending configuration.
 	Timezone string `json:"timezone,omitempty"`
-	// Schedules is ...
+	// Schedule is the schedule specification for the lending configuration.
 	Schedule ScheduleSpec `json:"schedule,omitempty"`
-	// TargetRefs is ...
+	// Targets is a list of target objects for the lending configuration.
 	Targets []Target `json:"targets,omitempty"`
 }
 
-// ObjectReference contains enough information to let you locate the
-// typed referenced object inside the same namespace.
+// ObjectReference contains enough information to let you locate the typed referenced object inside the same namespace.
 type ObjectReference struct {
-	// APIVersion is ...
+	// APIVersion is the API version of the referenced object.
 	APIVersion string `json:"apiVersion,omitempty"`
-	// Kind is ...
+	// Kind is the kind of the referenced object.
 	Kind string `json:"kind,omitempty"`
-	// Name is ...
+	// Name is the name of the referenced object.
 	Name string `json:"name,omitempty"`
 }
 
-// LendingReference is ...
+// LendingReference represents a reference to a lending object with the number of replicas.
 type LendingReference struct {
-	// ObjectReference is ...
+	// ObjectReference is the reference to the lending object.
 	ObjectReference `json:"objectReference,omitempty"`
-	// Replicas is ...
+	// Replicas is the number of replicas for the lending object.
 	Replicas int64 `json:"replicas,omitempty"`
 }
 
-// LendingConfigStatus defines the observed state of LendingConfig
+// LendingConfigStatus defines the observed state of a LendingConfig.
 type LendingConfigStatus struct {
-	// LendingReferences is ...
+	// LendingReferences is a list of references to lending objects.
 	LendingReferences []LendingReference `json:"objectReferences,omitempty"`
 }
 
 //+kubebuilder:object:root=true
 //+kubebuilder:subresource:status
 
-// LendingConfig is the Schema for the lendingconfigs API
+// LendingConfig is the Schema for the lendingconfigs API.
 type LendingConfig struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
 
-	Spec   LendingConfigSpec   `json:"spec,omitempty"`
+	// Spec is the desired state of the lending configuration.
+	Spec LendingConfigSpec `json:"spec,omitempty"`
+	// Status is the observed state of the lending configuration.
 	Status LendingConfigStatus `json:"status,omitempty"`
 }
 
@@ -123,7 +124,8 @@ type LendingConfig struct {
 type LendingConfigList struct {
 	metav1.TypeMeta `json:",inline"`
 	metav1.ListMeta `json:"metadata,omitempty"`
-	Items           []LendingConfig `json:"items"`
+	// Items is the list of LendingConfig objects.
+	Items []LendingConfig `json:"items"`
 }
 
 func init() {

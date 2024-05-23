@@ -23,9 +23,9 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/ubie-oss/cluster-lending-manager/api/v1alpha1"
-	clusterlendingmanagerv1alpha1 "github.com/ubie-oss/cluster-lending-manager/api/v1alpha1"
 	"github.com/pkg/errors"
+	// "github.com/ubie-oss/cluster-lending-manager/api/v1alpha1"
+	clusterlendingmanagerv1alpha1 "github.com/ubie-oss/cluster-lending-manager/api/v1alpha1"
 	"sigs.k8s.io/controller-runtime/pkg/client"
 	"sigs.k8s.io/controller-runtime/pkg/log"
 
@@ -255,7 +255,7 @@ func (config *LendingConfig) ActivateTargetResources(ctx context.Context, reconc
 				return errors.WithStack(err)
 			}
 			if !found {
-				return fmt.Errorf("The resource doesn't have replcias field.")
+				return fmt.Errorf("the resource doesn't have replcias field")
 			}
 			if replicas > 0 {
 				logger.Info("Skipped the already running resource.")
@@ -321,10 +321,10 @@ func (config *LendingConfig) ActivateTargetResources(ctx context.Context, reconc
 	return nil
 }
 
-func (config *LendingConfig) DeactivateTargetResources(ctx context.Context, reconciler *LendingConfigReconciler) ([]v1alpha1.LendingReference, error) {
+func (config *LendingConfig) DeactivateTargetResources(ctx context.Context, reconciler *LendingConfigReconciler) ([]clusterlendingmanagerv1alpha1.LendingReference, error) {
 	logger := log.FromContext(ctx)
 
-	lendingReferences := []v1alpha1.LendingReference{}
+	lendingReferences := []clusterlendingmanagerv1alpha1.LendingReference{}
 
 	for _, target := range config.Spec.Targets {
 		groupVersionKind, err := getGroupVersionKind(target)
@@ -347,7 +347,7 @@ func (config *LendingConfig) DeactivateTargetResources(ctx context.Context, reco
 				return errors.WithStack(err)
 			}
 			if !found {
-				return fmt.Errorf("The resource doesn't have replcias field.")
+				return fmt.Errorf("the resource doesn't have replcias field")
 			}
 			if replicas == 0 {
 				logger.Info("Skipped the already stopped resource.")
@@ -359,8 +359,8 @@ func (config *LendingConfig) DeactivateTargetResources(ctx context.Context, reco
 				return nil
 			}
 
-			lendingReferences = append(lendingReferences, v1alpha1.LendingReference{
-				ObjectReference: v1alpha1.ObjectReference{
+			lendingReferences = append(lendingReferences, clusterlendingmanagerv1alpha1.LendingReference{
+				ObjectReference: clusterlendingmanagerv1alpha1.ObjectReference{
 					Name:       uobj.GetName(),
 					APIVersion: target.APIVersion,
 					Kind:       target.Kind,

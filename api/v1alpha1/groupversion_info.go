@@ -15,8 +15,8 @@ limitations under the License.
 */
 
 // Package v1alpha1 contains API Schema definitions for the clusterlendingmanager v1alpha1 API group
-//+kubebuilder:object:generate=true
-//+groupName=clusterlendingmanager.ubie-oss.github.com
+// +kubebuilder:object:generate=true
+// +groupName=clusterlendingmanager.ubie-oss.github.com
 package v1alpha1
 
 import (

@@ -17,4 +17,4 @@ jobs:
     - uses: docker/build-push-action@v5
       with:
         push: true
-        tags: docker.pkg.github.com/ubie-oss/cluster-lending-manager/controller:latest
+        tags: docker.pkg.github.com/ubie-oss/cluster-lending-manager/cluster-lending-manager-controller:latest

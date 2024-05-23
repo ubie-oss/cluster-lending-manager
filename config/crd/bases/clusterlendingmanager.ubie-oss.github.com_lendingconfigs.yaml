@@ -1,0 +1,257 @@
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.14.0
+  name: lendingconfigs.clusterlendingmanager.ubie-oss.github.com
+spec:
+  group: clusterlendingmanager.ubie-oss.github.com
+  names:
+    kind: LendingConfig
+    listKind: LendingConfigList
+    plural: lendingconfigs
+    singular: lendingconfig
+  scope: Namespaced
+  versions:
+  - name: v1alpha1
+    schema:
+      openAPIV3Schema:
+        description: LendingConfig is the Schema for the lendingconfigs API.
+        properties:
+          apiVersion:
+            description: |-
+              APIVersion defines the versioned schema of this representation of an object.
+              Servers should convert recognized schemas to the latest internal value, and
+              may reject unrecognized values.
+              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+            type: string
+          kind:
+            description: |-
+              Kind is a string value representing the REST resource this object represents.
+              Servers may infer this from the endpoint the client submits requests to.
+              Cannot be updated.
+              In CamelCase.
+              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+            type: string
+          metadata:
+            type: object
+          spec:
+            description: Spec is the desired state of the lending configuration.
+            properties:
+              schedule:
+                description: Schedule is the schedule specification for the lending
+                  configuration.
+                properties:
+                  always:
+                    description: Always indicates if the schedule is always active.
+                    type: boolean
+                  default:
+                    description: Default is the default schedule for all days.
+                    properties:
+                      hours:
+                        description: Hours is a list of time schedules for the day.
+                        items:
+                          description: Schedule represents a time schedule with a
+                            start and end time.
+                          properties:
+                            end:
+                              description: End is the end time of the schedule.
+                              type: string
+                            start:
+                              description: Start is the start time of the schedule.
+                              type: string
+                          type: object
+                        type: array
+                    type: object
+                  friday:
+                    description: Friday is the schedule for Friday.
+                    properties:
+                      hours:
+                        description: Hours is a list of time schedules for the day.
+                        items:
+                          description: Schedule represents a time schedule with a
+                            start and end time.
+                          properties:
+                            end:
+                              description: End is the end time of the schedule.
+                              type: string
+                            start:
+                              description: Start is the start time of the schedule.
+                              type: string
+                          type: object
+                        type: array
+                    type: object
+                  monday:
+                    description: Monday is the schedule for Monday.
+                    properties:
+                      hours:
+                        description: Hours is a list of time schedules for the day.
+                        items:
+                          description: Schedule represents a time schedule with a
+                            start and end time.
+                          properties:
+                            end:
+                              description: End is the end time of the schedule.
+                              type: string
+                            start:
+                              description: Start is the start time of the schedule.
+                              type: string
+                          type: object
+                        type: array
+                    type: object
+                  saturday:
+                    description: Saturday is the schedule for Saturday.
+                    properties:
+                      hours:
+                        description: Hours is a list of time schedules for the day.
+                        items:
+                          description: Schedule represents a time schedule with a
+                            start and end time.
+                          properties:
+                            end:
+                              description: End is the end time of the schedule.
+                              type: string
+                            start:
+                              description: Start is the start time of the schedule.
+                              type: string
+                          type: object
+                        type: array
+                    type: object
+                  sunday:
+                    description: Sunday is the schedule for Sunday.
+                    properties:
+                      hours:
+                        description: Hours is a list of time schedules for the day.
+                        items:
+                          description: Schedule represents a time schedule with a
+                            start and end time.
+                          properties:
+                            end:
+                              description: End is the end time of the schedule.
+                              type: string
+                            start:
+                              description: Start is the start time of the schedule.
+                              type: string
+                          type: object
+                        type: array
+                    type: object
+                  thursday:
+                    description: Thursday is the schedule for Thursday.
+                    properties:
+                      hours:
+                        description: Hours is a list of time schedules for the day.
+                        items:
+                          description: Schedule represents a time schedule with a
+                            start and end time.
+                          properties:
+                            end:
+                              description: End is the end time of the schedule.
+                              type: string
+                            start:
+                              description: Start is the start time of the schedule.
+                              type: string
+                          type: object
+                        type: array
+                    type: object
+                  tuesday:
+                    description: Tuesday is the schedule for Tuesday.
+                    properties:
+                      hours:
+                        description: Hours is a list of time schedules for the day.
+                        items:
+                          description: Schedule represents a time schedule with a
+                            start and end time.
+                          properties:
+                            end:
+                              description: End is the end time of the schedule.
+                              type: string
+                            start:
+                              description: Start is the start time of the schedule.
+                              type: string
+                          type: object
+                        type: array
+                    type: object
+                  wednesday:
+                    description: Wednesday is the schedule for Wednesday.
+                    properties:
+                      hours:
+                        description: Hours is a list of time schedules for the day.
+                        items:
+                          description: Schedule represents a time schedule with a
+                            start and end time.
+                          properties:
+                            end:
+                              description: End is the end time of the schedule.
+                              type: string
+                            start:
+                              description: Start is the start time of the schedule.
+                              type: string
+                          type: object
+                        type: array
+                    type: object
+                type: object
+              targets:
+                description: TargetRefs is a list of target objects for the lending
+                  configuration.
+                items:
+                  description: Target represents a target object for the lending configuration.
+                  properties:
+                    apiVersion:
+                      description: APIVersion is the API version of the target object.
+                      type: string
+                    defaultReplicas:
+                      description: DefaultReplicas is the default number of replicas
+                        for the target object.
+                      format: int64
+                      type: integer
+                    kind:
+                      description: Kind is the kind of the target object.
+                      type: string
+                    name:
+                      description: Name is the name of the target object.
+                      type: string
+                  type: object
+                type: array
+              timezone:
+                description: Timezone is the timezone for the lending configuration.
+                type: string
+            type: object
+          status:
+            description: Status is the observed state of the lending configuration.
+            properties:
+              objectReferences:
+                description: LendingReferences is a list of references to lending
+                  objects.
+                items:
+                  description: LendingReference represents a reference to a lending
+                    object with the number of replicas.
+                  properties:
+                    objectReference:
+                      description: ObjectReference is the reference to the lending
+                        object.
+                      properties:
+                        apiVersion:
+                          description: APIVersion is the API version of the referenced
+                            object.
+                          type: string
+                        kind:
+                          description: Kind is the kind of the referenced object.
+                          type: string
+                        name:
+                          description: Name is the name of the referenced object.
+                          type: string
+                      type: object
+                    replicas:
+                      description: Replicas is the number of replicas for the lending
+                        object.
+                      format: int64
+                      type: integer
+                  type: object
+                type: array
+            type: object
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}
