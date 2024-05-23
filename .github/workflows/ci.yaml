@@ -4,12 +4,10 @@ jobs:
   setup:
     runs-on: ubuntu-latest
     steps:
-    - name: set up
-      uses: actions/setup-go@v2
+    - uses: actions/checkout@v4
+    - uses: actions/setup-go@v4
       with:
-        go-version: ^1.17
-    - name: check out
-      uses: actions/checkout@v2
+        go-version-file: go.mod
     - name: before cache
       run: |
         mkdir -p ~/go/pkg/mod
@@ -24,33 +22,26 @@ jobs:
     needs: setup
     runs-on: ubuntu-latest
     steps:
-    - name: set up
-      uses: actions/setup-go@v2
+    - uses: actions/checkout@v4
+    - uses: actions/setup-go@v4
       with:
-        go-version: ^1.17
-    - uses: actions/checkout@v2
-    - name: build
-      run: make build
+        go-version-file: go.mod
+    - run: make build
   lint:
     needs: setup
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - name: golangci-lint
-      uses: golangci/golangci-lint-action@v2
-      with:
-        version: v1.42.1
+    - uses: actions/checkout@v4
+    - uses: golangci/golangci-lint-action@v3
   test:
     needs: setup
     runs-on: ubuntu-latest
     steps:
-    - name: set up
-      uses: actions/setup-go@v2
+    - uses: actions/checkout@v4
+    - uses: actions/setup-go@v4
       with:
-        go-version: ^1.17
-    - uses: actions/checkout@v2
-    - name: test
-      run: make test
+        go-version-file: go.mod
+    - run: make test
     - uses: shogo82148/actions-goveralls@v1
       with:
         path-to-profile: cover.out
