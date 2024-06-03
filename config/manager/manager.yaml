@@ -31,7 +31,7 @@ spec:
         - /manager
         args:
         - --leader-elect
-        image: docker.pkg.github.com/ubie-oss/cluster-lending-manager/controller:latest
+        image: ghcr.io/ubie-oss/cluster-lending-manager/cluster-lending-manager-controller:latest
         imagePullPolicy: IfNotPresent
         name: manager
         securityContext:
