@@ -89,12 +89,8 @@ func (config *LendingConfig) UpdateSchedules(ctx context.Context, reconciler *Le
 	}
 	if config.Spec.ScheduleMode == ScheduleModeNever {
 		logger.Info("Allow always deactivate resources (SchedulerMode=%s)", ScheduleModeNever)
-		lendingReferences, err := config.DeactivateTargetResources(ctx, reconciler)
-		if err != nil {
+		if _, err := config.DeactivateTargetResources(ctx, reconciler); err != nil {
 			return err
-		}
-		for _, lr := range lendingReferences {
-			logger.Info(fmt.Sprintf("Deactivated %s %s/%s", lr.APIVersion, lr.Kind, lr.Name))
 		}
 		return nil
 	}
