@@ -191,9 +191,16 @@ spec:
                         type: array
                     type: object
                 type: object
+              scheduleMode:
+                default: Cron
+                description: ScheduleMode is the schedule mode for the lending configuration.
+                enum:
+                - Always
+                - Cron
+                - Schedule
+                type: string
               targets:
-                description: TargetRefs is a list of target objects for the lending
-                  configuration.
+                description: Targets is a list of target objects for the lending configuration.
                 items:
                   description: Target represents a target object for the lending configuration.
                   properties:

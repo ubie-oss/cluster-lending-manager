@@ -52,6 +52,7 @@ type ScheduleSpec struct {
 	Saturday *DaySchedule `json:"saturday,omitempty"`
 	// Sunday is the schedule for Sunday.
 	Sunday *DaySchedule `json:"sunday,omitempty"`
+
 	// Always indicates if the schedule is always active.
 	Always bool `json:"always,omitempty"`
 
@@ -76,6 +77,10 @@ type LendingConfigSpec struct {
 	Timezone string `json:"timezone,omitempty"`
 	// Schedule is the schedule specification for the lending configuration.
 	Schedule ScheduleSpec `json:"schedule,omitempty"`
+	// ScheduleMode is the schedule mode for the lending configuration.
+	// +kubebuilder:default=Cron
+	// +kubebuilder:validation:Enum=Always;Cron;Schedule
+	ScheduleMode string `json:"scheduleMode,omitempty"`
 	// Targets is a list of target objects for the lending configuration.
 	Targets []Target `json:"targets,omitempty"`
 }
