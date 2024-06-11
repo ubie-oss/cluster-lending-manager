@@ -197,7 +197,7 @@ spec:
                 enum:
                 - Always
                 - Cron
-                - Schedule
+                - Never
                 type: string
               targets:
                 description: Targets is a list of target objects for the lending configuration.

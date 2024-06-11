@@ -79,7 +79,7 @@ type LendingConfigSpec struct {
 	Schedule ScheduleSpec `json:"schedule,omitempty"`
 	// ScheduleMode is the schedule mode for the lending configuration.
 	// +kubebuilder:default=Cron
-	// +kubebuilder:validation:Enum=Always;Cron;Schedule
+	// +kubebuilder:validation:Enum=Always;Cron;Never
 	ScheduleMode string `json:"scheduleMode,omitempty"`
 	// Targets is a list of target objects for the lending configuration.
 	Targets []Target `json:"targets,omitempty"`

@@ -81,14 +81,14 @@ func (config *LendingConfig) UpdateSchedules(ctx context.Context, reconciler *Le
 	// - Never: Never lend the cluster.
 	// - Cron: Lend the cluster according to the schedule. (Default)
 	if config.Spec.ScheduleMode == ScheduleModeAlways {
-		logger.Info("Allow always activate resources (SchedulerMode=%s)", ScheduleModeAlways)
+		logger.Info(fmt.Sprintf("Allow always activate resources (SchedulerMode=%s)", ScheduleModeAlways))
 		if err := config.ActivateTargetResources(ctx, reconciler); err != nil {
 			return err
 		}
 		return nil
 	}
 	if config.Spec.ScheduleMode == ScheduleModeNever {
-		logger.Info("Allow always deactivate resources (SchedulerMode=%s)", ScheduleModeNever)
+		logger.Info(fmt.Sprintf("Allow always deactivate resources (SchedulerMode=%s)", ScheduleModeNever))
 		if _, err := config.DeactivateTargetResources(ctx, reconciler); err != nil {
 			return err
 		}
@@ -104,7 +104,7 @@ func (config *LendingConfig) UpdateSchedules(ctx context.Context, reconciler *Le
 		return nil
 	}
 
-	logger.Info("Set individual day schedules (SchedulerMode=%s)", ScheduleModeCron)
+	logger.Info(fmt.Sprintf("Set individual day schedules (SchedulerMode=%s)", ScheduleModeCron))
 
 	items := []CronItem{}
 
