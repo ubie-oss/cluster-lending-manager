@@ -41,6 +41,7 @@ type LendingConfig clusterlendingmanagerv1alpha1.LendingConfig
 var hoursPattern = regexp.MustCompile(`(\d{2}):(\d{2}) *(am|pm)?`)
 
 type LendingConfigEvent = string
+type LendingScheduleMode = string
 
 const annotationNameSkip = "clusterlendingmanager.ubie-oss.github.com/skip"
 const annotationNameDefaultReplicas = "clusterlendingmanager.ubie-oss.github.com/default-replicas"
@@ -50,6 +51,10 @@ const (
 	SchedulesCleared LendingConfigEvent = "SchedulesCleared"
 	LendingStarted   LendingConfigEvent = "LendingStarted"
 	LendingEnded     LendingConfigEvent = "endingEnded"
+
+	ScheduleModeAlways LendingScheduleMode = "Always"
+	ScheduleModeNever  LendingScheduleMode = "Never"
+	ScheduleModeCron   LendingScheduleMode = "Cron"
 )
 
 func (config *LendingConfig) ClearSchedules(ctx context.Context, reconciler *LendingConfigReconciler) error {
@@ -71,6 +76,26 @@ func (config *LendingConfig) UpdateSchedules(ctx context.Context, reconciler *Le
 
 	reconciler.Cron.Clear(config.ToNamespacedName())
 
+	// ScheduleMode
+	// - Always: Always lend the cluster.
+	// - Never: Never lend the cluster.
+	// - Cron: Lend the cluster according to the schedule. (Default)
+	if config.Spec.ScheduleMode == ScheduleModeAlways {
+		logger.Info(fmt.Sprintf("Allow always activate resources (SchedulerMode=%s)", ScheduleModeAlways))
+		if err := config.ActivateTargetResources(ctx, reconciler); err != nil {
+			return err
+		}
+		return nil
+	}
+	if config.Spec.ScheduleMode == ScheduleModeNever {
+		logger.Info(fmt.Sprintf("Allow always deactivate resources (SchedulerMode=%s)", ScheduleModeNever))
+		if _, err := config.DeactivateTargetResources(ctx, reconciler); err != nil {
+			return err
+		}
+		return nil
+	}
+
+	// TODO: Remove in future
 	if config.Spec.Schedule.Always {
 		logger.Info("Allow always lend the cluster")
 		if err := config.ActivateTargetResources(ctx, reconciler); err != nil {
@@ -79,7 +104,7 @@ func (config *LendingConfig) UpdateSchedules(ctx context.Context, reconciler *Le
 		return nil
 	}
 
-	logger.Info("Set individual day schedules")
+	logger.Info(fmt.Sprintf("Set individual day schedules (SchedulerMode=%s)", ScheduleModeCron))
 
 	items := []CronItem{}
 
