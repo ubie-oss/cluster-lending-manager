@@ -21,8 +21,8 @@ spec:
   - kind: Rollout
     apiVersion: argoproj.io/v1alpha1
   timezone: "Asia/Tokyo"
+  scheduleMode: "Cron" # or "Always" or "Never" (default is Cron)
   schedule:
-    always: false
     default:
       hours:
       - start: "10:00"
@@ -32,9 +32,9 @@ spec:
       - start: "10:00"
         end: "17:00" # Happy Friday!
     saturday:
-      hours: [] # Ofcourse, no work!
+      hours: [] # Of course, no work!
     sunday:
-      hours: [] # Ofcourse, no work!
+      hours: [] # Of course, no work!
 ```
 
 ## Prerequisites
